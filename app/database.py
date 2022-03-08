@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from time import sleep
-from .config import Settings, settings
+from .config import settings
 
 # SQLALCHEMY_DATABASE_URL = "postgresql://postgres:foss@localhost/fastapi"
 SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}/{settings.database_name}"
@@ -24,19 +24,19 @@ def get_db():
         db.close()
 
 
-while True:
-    try:
-        conn = psycopg2.connect(
-            host="localhost",
-            dbname="fastapi",
-            user="postgres",
-            password="foss",
-            cursor_factory=RealDictCursor,
-        )
-        cursor = conn.cursor()
-        print("Database connection was succesfull!")
-        break
-    except Exception as error:
-        print("Connection to database failed")
-        print(error)
-        sleep(1)
+# while True:
+#     try:
+#         conn = psycopg2.connect(
+#             host="localhost",
+#             dbname="fastapi",
+#             user="postgres",
+#             password="foss",
+#             cursor_factory=RealDictCursor,
+#         )
+#         cursor = conn.cursor()
+#         print("Database connection was succesfull!")
+#         break
+#     except Exception as error:
+#         print("Connection to database failed")
+#         print(error)
+#         sleep(1)
